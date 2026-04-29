@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Página não encontrada | TGF! Studios™</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Segoe UI Symbol', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 8pt;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Header ── */
+        header {
+            background: #180052;
+            padding: 20px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-content a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .header-content a:active {
+            opacity: 0.7;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .site-title {
+            font-size: 20pt;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        /* ── Main ── */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #000;
+            margin-top: 88px;
+            margin-bottom: 80px;
+        }
+
+        .tile {
+            background: #180052;
+            padding: 80px 40px;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tile-content {
+            text-align: left;
+            max-width: 700px;
+        }
+
+        /* Código de erro grande */
+        .error-code {
+            font-size: 96pt;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -4px;
+            /* Borda sutil pra dar profundidade sem depender só de cor */
+            text-shadow:
+                2px  2px 0 rgba(255,255,255,0.08),
+               -2px -2px 0 rgba(0,0,0,0.4);
+            margin-bottom: 10px;
+            user-select: none;
+        }
+
+        .error-label {
+            font-size: 14pt;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.55);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .tile h1 {
+            font-size: 24pt;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .tile p {
+            font-size: 12pt;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        /* URL que foi tentada */
+        .requested-url {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10pt;
+            color: rgba(255, 255, 255, 0.45);
+            background: rgba(0, 0, 0, 0.35);
+            padding: 8px 14px;
+            border-radius: 4px;
+            border-left: 3px solid rgba(255, 255, 255, 0.2);
+            margin: 20px 0 30px;
+            word-break: break-all;
+            display: none; /* Mostrado via JS se disponível */
+        }
+
+        /* Botão voltar ao início */
+        .btn-home {
+            display: inline-block;
+            padding: 12px 28px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            font-family: inherit;
+            font-size: 10pt;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-home:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        .btn-home:active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Separador decorativo */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.25);
+            margin: 28px 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: #180052;
+            padding: 20px 30px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .copyright {
+            color: #fff;
+            font-size: 8pt;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* ── Responsivo ── */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .site-title {
+                font-size: 16pt;
+            }
+
+            .tile {
+                padding: 40px 25px;
+            }
+
+            .error-code {
+                font-size: 64pt;
+                letter-spacing: -2px;
+            }
+
+            .error-label {
+                font-size: 9pt;
+                letter-spacing: 3px;
+            }
+
+            .tile h1 {
+                font-size: 16pt;
+            }
+
+            .tile p {
+                font-size: 10pt;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 48pt;
+            }
+
+            .copyright {
+                font-size: 7pt;
+            }
+
+            .btn-home {
+                font-size: 9pt;
+                padding: 10px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="https://tgf-studios.github.io">
+                <img src="tgflogo_new.png" alt="TGF! Studios Logo" class="logo">
+                <h1 class="site-title">TGF! Studios™</h1>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="tile">
+            <div class="tile-content">
+                <div class="error-code">404</div>
+                <div class="error-label">Página não encontrada</div>
+
+                <h1>Hmm, isso não existe.</h1>
+                <p>A página que você está tentando acessar não foi encontrada neste servidor.</p>
+                <p>Pode ter sido removida, renomeada, ou o endereço foi digitado errado.</p>
+
+                <div class="requested-url" id="requested-url"></div>
+
+                <div class="divider"></div>
+
+                <a class="btn-home" href="https://tgf-studios.github.io">← Voltar ao início</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            &copy; 2019-2026 TGF! Studios™<br>
+            &copy; 2024-2025 Neko Interactive Systems™
+        </div>
+    </footer>
+
+    <script>
+        // Exibe a URL que foi tentada, se o navegador fornecer
+        (function () {
+            var el = document.getElementById('requested-url');
+            var url = window.location.href;
+            if (url && el) {
+                el.textContent = url;
+                el.style.display = 'block';
+            }
+        })();
+    </script>
+</body>
+</html>
